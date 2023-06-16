@@ -19,3 +19,29 @@ code {
 a {
   text-decoration: none;
 }
+
+h1, h3 {
+  text-align: center;
+}
+
+.filter-option {
+  background-color: lightgray;
+   padding: 2px;
+   margin:5px;
+   font-size: 14px;
+   border-radius: 5px;
+   display: inline-block;
+}
+
+.btn-delete-filter {
+  margin-left: 8px;
+  margin-right: 3px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-delete-filter:hover {
+  font-size: 14px;
+  float: right;
+}
+

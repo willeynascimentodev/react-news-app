@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Feed from './pages/Feed';
 import PrivateRoute from './components/PrivateRoute';
+import FeedPreferences from './pages/FeedPreferences';
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
       <Router>
         <Routes> 
           <Route path='/sign-in' element={ <SignIn /> } />
+          <Route path='/feed-preferences' element={<PrivateRoute />} >
+            <Route path='/feed-preferences' element={<FeedPreferences />} />
+          </Route>
           <Route path='/feed' element={<PrivateRoute />} >
             <Route path='/feed' element={<Feed />} />
           </Route>

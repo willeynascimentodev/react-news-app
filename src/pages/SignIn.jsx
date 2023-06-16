@@ -1,11 +1,11 @@
 import LoginForm from "../components/LoginForm";
 import NavMenu from "../components/NavMenu";
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import Loading from '../components/Loading';
 import { reset } from '../resources/login/login.slice';
+import { toast } from 'react-toastify';
+import { useSelector, useDispatch } from 'react-redux';
 
 function SignIn() {
 	const dispatch = useDispatch();
@@ -36,11 +36,9 @@ function SignIn() {
 
 	return (
 		<>
-			<NavMenu
-
-			/>
+			<NavMenu />
 			<div className="container">
-				<h1 className="text-center">News Agregator Sign In</h1>
+				<h2 className="text-center">Sign In</h2>
 				<LoginForm />
 			</div>
 		</>

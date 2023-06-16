@@ -33,7 +33,7 @@ function NavMenu() {
       {[desktop].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3">
           <Container fluid>
-            <Navbar.Brand href="#">Menu</Navbar.Brand>
+            <Navbar.Brand href="#">News Agregator</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -62,7 +62,9 @@ function NavMenu() {
                           id={`offcanvasNavbarDropdown-expand-${expand}`}
                         >
                           <NavDropdown.Item href="#action4">
-                            Feed Preferences
+                            <Link className='nav-link' to='/feed-preferences'>
+                              Feed Preferences
+                            </Link>
                           </NavDropdown.Item>
                           <NavDropdown.Divider />
                           <NavDropdown.Item onClick={logoutClick}>
