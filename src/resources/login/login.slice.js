@@ -26,12 +26,26 @@ export const login = createAsyncThunk('login/store', async (user, thunkAPI) => {
 
 export const logout = createAsyncThunk('login/destroy', async (thunkAPI) => {
     const token = thunkAPI.getState().auth.user.token;
-
+    console.log(thunkAPI.getState().auth);
     try {
         localStorage.removeItem('user');
         return await loginService.logout(token);
     } catch (error) {
         return thunkAPI.rejectWithValue('The system could not logout, try again.');
+    }
+    
+});
+
+export const register = createAsyncThunk('register/store', async (data, thunkAPI) => {
+    
+    try {
+        return await loginService.register(data);
+    } catch (error) {
+        if(error.response.data.message) {
+            return thunkAPI.rejectWithValue(error.response.data.message);
+        } else {
+            return thunkAPI.rejectWithValue('The system could not proceed, try againin a few minutes.');            
+        }        
     }
     
 });
@@ -67,6 +81,17 @@ export const loginSlice = createSlice({
             state.isSuccess = true
             state.user = null
         }).addCase(logout.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+            state.user = null
+        }).addCase(register.pending, (state) => {
+            state.isLoading = true
+        }).addCase(register.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.user = null
+        }).addCase(register.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload

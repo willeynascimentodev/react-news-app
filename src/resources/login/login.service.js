@@ -21,10 +21,21 @@ const logout = async (token) => {
 
 }
 
+const register = async (data) => {
+    const URL_REGISTER = process.env.REACT_APP_API_URL+"/user";
+
+    const response = await axios.post(URL_REGISTER, data)
+
+    if( response.data ) {
+        return response.data
+    }
+}
+
 
 const loginService = { 
     login,
-    logout
+    logout,
+    register
 }
 
 export default loginService;

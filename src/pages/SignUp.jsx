@@ -7,7 +7,7 @@ import { reset } from '../resources/login/login.slice';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 
-function SignIn() {
+function SignUp() {
 	const dispatch = useDispatch();
 
 	const navigate = useNavigate();
@@ -23,23 +23,26 @@ function SignIn() {
 		}
 
 		if (isSuccess) {
-			navigate('/feed')
+            toast.success('successfully created');
+			navigate('/sign-up');
 		}
 
 		dispatch(reset);
 
-	}, [isError, isSuccess, user, isLoading, dispatch]);
+	}, [navigate, isError, isSuccess, user, isLoading, dispatch]);
 
 	return (
 		<>
 			<NavMenu />
-			<Loading loading={isLoading} />
+                
+            <Loading loading={isLoading} />
+            
 			<div className="container">
-				<h2 className="text-center">Sign In</h2>
-				<LoginForm />
+				<h2 className="text-center">Create Your Account</h2>
+				<LoginForm isRegister={true}/>
 			</div>
 		</>
 	)
 }
 
-export default SignIn;
+export default SignUp;

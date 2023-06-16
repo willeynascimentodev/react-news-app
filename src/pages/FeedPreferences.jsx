@@ -26,9 +26,9 @@ function FeedPreferences() {
         return () => {
             if(isSuccess) {
                 dispatch(reset())
-                setCategories(filters.data.categories);
-                setSources(filters.data.sources);
-                setAuthors(filters.data.authors);
+                setCategories(filters.data.categories || []);
+                setSources(filters.data.sources || []);
+                setAuthors(filters.data.authors || []);
             }
         }
     }, [dispatch, isSuccess, isLoading, filters])
@@ -53,6 +53,7 @@ function FeedPreferences() {
             <div className="container">
                 <h2 className="text-center">Feed Preferences</h2>
                 <h3>Personalize your feed choosing default filters</h3>
+                <Loading loading={isLoading} />
                 <div className='row mt-3 mb-3'>
                     {
                         !isLoading  ? (

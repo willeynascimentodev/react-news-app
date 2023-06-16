@@ -112,10 +112,6 @@ function Search () {
             toast.warning('Limit reached for this type of filter');
         }
     }
-    
-    if(isLoadingArticle) {
-        return <Loading />
-    } 
 
     if(message && message == 'Your session is over')  {
         toast.error('Your session is over sign in again');
@@ -164,6 +160,7 @@ function Search () {
                 resetArticles={resetArticles}
                 
             />
+            <Loading loading={isLoadingArticle} />
             <div className="col-sm-12 col-md-8 col-lg-8 mx-auto d-block mt-5">
                 
                 { articlesState.map((article) => (

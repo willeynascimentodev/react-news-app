@@ -1,7 +1,8 @@
 import { TailSpin } from 'react-loader-spinner';
 
-function Loading() {
-    return <div style={{ textAlign: "center" }}>
+function Loading({loading}) {
+
+    return loading ? <div style={{ textAlign: "center" }}>
         <TailSpin
             height="80"
             width="80"
@@ -12,7 +13,7 @@ function Loading() {
             wrapperClass=""
             visible={true}
         />
-    </div>
+    </div> : null
 }
 
 export default Loading;

@@ -29,7 +29,7 @@ function Feed () {
     const params = {
         date: date,
         page: page,
-        token: user.data.token
+        token: user ? user.data.token : null
     }
 
     useEffect(() => {
@@ -45,10 +45,6 @@ function Feed () {
     useEffect(() => {
         dispatch(getArticles(params));
     }, [dispatch])
-
-    if(isLoadingArticle) {
-        return <Loading />
-    } 
 
     if(message && message == 'Your session is over')  {
         toast.error('Your session is over sign in again');
@@ -73,6 +69,7 @@ function Feed () {
                 resetArticles={resetArticles}
                 
             />
+            <Loading loading={isLoadingArticle} />
             <div className="col-sm-12 col-md-10 col-lg-10 mx-auto d-block mt-5">
                 
                 { articlesState.map((article) => (

@@ -75,7 +75,7 @@ function NavMenu() {
                     ) : (
                       <>
 
-                        <Link className='nav-link' to='/'>
+                        <Link className='nav-link' to='/sign-up'>
                           Sign Up
                         </Link>
 

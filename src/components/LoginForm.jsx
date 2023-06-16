@@ -1,9 +1,9 @@
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
-import { login } from '../resources/login/login.slice';
+import { login, register } from '../resources/login/login.slice';
 import { useDispatch } from 'react-redux';
 
-function LoginForm() {
+function LoginForm({isRegister}) {
     const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({});
@@ -22,7 +22,11 @@ function LoginForm() {
             email: formData.formGroupEmail,
             password: formData.formGroupPassword
         }
-        dispatch(login(data));
+        if(!isRegister) {
+            dispatch(login(data));
+        } else {
+            dispatch(register(data));
+        }
     }
 
     return (
@@ -36,7 +40,11 @@ function LoginForm() {
                 <Form.Control required minLength={6} type="password" placeholder="Password" name="password" onChange={onChange} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formGroupSubmit">
-                <Form.Control type="submit" value="Sign In" />
+                {
+                    isRegister ? 
+                        <Form.Control type="submit" value="Sign Up" /> : 
+                            <Form.Control type="submit" value="Sign In" />
+                }
             </Form.Group>
         </Form>
     );

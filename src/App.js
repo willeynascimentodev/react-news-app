@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
 import SignIn from '../src/pages/SignIn';
+import SignUp from '../src/pages/SignUp';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Feed from './pages/Feed';
@@ -15,6 +16,8 @@ function App() {
         <Routes> 
         <Route path='/' element={ <SignIn /> } />
           <Route path='/sign-in' element={ <SignIn /> } />
+          <Route path='/sign-up' element={ <SignUp /> } />
+          
           <Route path='/feed-preferences' element={<PrivateRoute />} >
             <Route path='/feed-preferences' element={<FeedPreferences />} />
           </Route>
