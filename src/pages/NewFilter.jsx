@@ -1,5 +1,5 @@
 import NavMenu from '../components/NavMenu';
-import InputGroup from 'react-bootstrap/InputGroup';
+
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -8,6 +8,7 @@ import {  useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { store, reset} from '../resources/filter/filter.slice';
 import { useEffect } from 'react';
+import IncludeFilter from '../components/IncludeFilter';
 
 function NewFilter() {
     const { user } = useSelector((state) => state.login);
@@ -47,17 +48,18 @@ function NewFilter() {
     }
 
     function addFilter() {
-        const data = {
-            name: formData.filter,
-            type: formData.type,
-            token: user.data.token
-        }
 
         if(formData.filter.length < 3) {
             toast.warning('Type at least 3 characteres');
         }else if(formData.type.length <= 3) {
             toast.warning('Choose a type of filter');
         } else {
+            const data = {
+                name: formData.filter,
+                type: formData.type,
+                token: user.data.token
+            }
+            
             dispatch(store(data));
             setFormData({})
         }
@@ -70,36 +72,15 @@ function NewFilter() {
     return (
         <>
             <NavMenu />
-            <div>
-                <InputGroup className="col-xs-4 col-sm-4">
-                    <input className='form-control'
-                        placeholder='Type a filter name' 
-                        onChange={onChange}
-                        value={filter}
-                        type="text"
-                        name="filter"
-                        id="filter"
-                    />
-                    <InputGroup.Text
-                        onClick={addFilter}
-                        style={{cursor:'pointer'}}
-                    >
-                        Include
-                    </InputGroup.Text>
-                </InputGroup>
-                <select 
-                    name="type" 
-                    id="type"
-                    className='form-control'
-                    onChange={onChange}
-                    value={type}
-                >
-                    <option value="">Choose a type</option>
-                    <option value="source">Source</option>
-                    <option value="category">Category</option>
-                    <option value="author">Author</option>
-                </select>
-            </div>
+            <h2 className="text-center">Save Filter</h2>
+            <h3 className="text-center mb-3">Enter some predefined filters here</h3>
+            <IncludeFilter 
+                className='col-sm-8 mx-auto'
+                onChange={onChange}
+                filter={filter}
+                type={type}
+                addFilter={addFilter}
+            />
         </>
     )
 }

@@ -6,12 +6,14 @@ import Feed from './pages/Feed';
 import PrivateRoute from './components/PrivateRoute';
 import FeedPreferences from './pages/FeedPreferences';
 import NewFilter from './pages/NewFilter';
+import Search from './pages/Search';
 
 function App() {
   return (
     <>
       <Router>
         <Routes> 
+        <Route path='/' element={ <SignIn /> } />
           <Route path='/sign-in' element={ <SignIn /> } />
           <Route path='/feed-preferences' element={<PrivateRoute />} >
             <Route path='/feed-preferences' element={<FeedPreferences />} />
@@ -21,6 +23,9 @@ function App() {
           </Route>
           <Route path='/feed' element={<PrivateRoute />} >
             <Route path='/feed' element={<Feed />} />
+          </Route>
+          <Route path='/search' element={<PrivateRoute />} >
+            <Route path='/search' element={<Search />} />
           </Route>
         </Routes> 
       </Router>

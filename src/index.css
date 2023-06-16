@@ -24,6 +24,10 @@ h1, h3 {
   text-align: center;
 }
 
+h3{
+  font-size: 18px !important;
+}
+
 .filter-option {
   background-color: lightgray;
    padding: 2px;
@@ -45,3 +49,16 @@ h1, h3 {
   float: right;
 }
 
+.MuiTypography-root {
+  text-align: center;
+  margin-top: 20px !important;
+}
+
+.MuiPagination-root {
+  display: block !important;
+  margin: auto !important;
+}
+
+.form-control {
+  display: inline-block;
+}

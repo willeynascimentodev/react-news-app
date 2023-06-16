@@ -54,7 +54,7 @@ function NavMenu() {
                           Feed
                         </Link>
 
-                        <Link className='nav-link' to='/'>
+                        <Link className='nav-link' to='/search'>
                           Search
                         </Link>
                         <NavDropdown

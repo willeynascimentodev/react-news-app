@@ -64,9 +64,12 @@ function FeedPreferences() {
                         ) : ([])
                     }
                 </div>
-                <Link className='btn btn-secondary form-control' to='/new-filter'>
-                    Create New Filters
-                </Link>
+                <div className="mx-auto className='col-sm-6 col-md-3 col-lg-2">
+                    <Link className='btn btn-secondary form-control' to='/new-filter'>
+                        Create New Filters
+                    </Link>
+                </div>
+                
                 
             </div>
         </>

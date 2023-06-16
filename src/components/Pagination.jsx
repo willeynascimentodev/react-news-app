@@ -21,8 +21,8 @@ export default function PaginationControlled({n, setPageParent, dispatch, getArt
   useEffect(() => {
     return () => {
         if(isSuccessArticle) {
-            dispatch(resetArticles())
             setArticlesState(articles.data || []);
+            dispatch(resetArticles())
         }
     }
 }, [dispatch, isSuccessArticle, articles])

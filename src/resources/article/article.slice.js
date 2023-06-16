@@ -25,6 +25,20 @@ export const getArticles = createAsyncThunk('articles/getArticles', async (param
     }
 });
 
+export const getSearch = createAsyncThunk('articles/getSearch', async (params, thunkAPI) => {
+    try {
+        return await articleService.search(params);
+    } catch (error) {
+        if(error.response.data.message == 'Token has expired') {
+            return thunkAPI.rejectWithValue('Your session is over');
+        }
+        const message = (error.response && error.response.data && error.response.data.message)
+        || error.message || error.toString()
+
+        return thunkAPI.rejectWithValue(message)
+    }
+});
+
 export const articleSlice = createSlice({
     name: 'article',
     initialState, 
@@ -39,6 +53,17 @@ export const articleSlice = createSlice({
             state.isSuccessArticle = true
             state.articles = action.payload
         }).addCase(getArticles.rejected, (state, action) => {
+            state.isLoadingArticle = false
+            state.isErrorArticle = true
+            state.message = action.payload
+            state.articles = {}
+        }).addCase(getSearch.pending, (state) => {
+            state.isLoadingArticle = true
+        }).addCase(getSearch.fulfilled, (state, action) => {
+            state.isLoadingArticle = false
+            state.isSuccessArticle = true
+            state.articles = action.payload
+        }).addCase(getSearch.rejected, (state, action) => {
             state.isLoadingArticle = false
             state.isErrorArticle = true
             state.message = action.payload

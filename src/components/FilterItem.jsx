@@ -14,7 +14,9 @@ function FilterItem({filter}) {
             id: filter.id,
             token: user.data.token
         } 
-        dispatch(destroy(data));
+        if(filter.id != 0) {
+            dispatch(destroy(data));
+        } 
         setRender(false);
     }
 

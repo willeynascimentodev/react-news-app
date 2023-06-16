@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { getArticles, resetArticles} from '../resources/article/article.slice';
 import Pagination from '../components/Pagination'
+import Article from "../components/Article";
 
 function Feed () {
     const { user } = useSelector((state) => state.login);
@@ -27,7 +28,7 @@ function Feed () {
 
     const params = {
         date: date,
-        page, page,
+        page: page,
         token: user.data.token
     }
 
@@ -60,6 +61,7 @@ function Feed () {
             <h2 className="text-center">Feed</h2>
             <h3 className="text-center">You will see news based on the filter that you defined.</h3>
             <Pagination 
+                style={{display: "block", margin:"auto", textAlign:"center"}}
                 params={params} 
                 dispatch={dispatch} 
                 getArticles={getArticles} 
@@ -69,13 +71,12 @@ function Feed () {
                 setArticlesState={setArticlesState}
                 isSuccessArticle={isSuccessArticle}
                 resetArticles={resetArticles}
+                
             />
-            <div className=" col-xs-4 col-sm-6 col-lg-4 col-md-4 mb-2">
+            <div className="col-sm-12 col-md-10 col-lg-10 mx-auto d-block mt-5">
                 
                 { articlesState.map((article) => (
-                    <span>
-                        {article.title}
-                    </span>
+                    <Article className="mt-2" key={article.idInPage} article={article}/>
                 )) }
             </div>
         </div>
