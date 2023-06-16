@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Quick Installation
 
-1 - Make sure port 3000 is free.
+1 - Make sure port 3000 is free (You can also configure other ports, but if you use the default one, it won't be necessary to change it in the laravel project).
 
 2 - Run the setup.sh file in the root directory of the project.
 
