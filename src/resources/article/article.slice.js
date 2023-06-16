@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import articleService from './article.service'
-import { useSelector } from 'react-redux';
+
 
 const initialState =  {
     article: {},
@@ -11,7 +11,7 @@ const initialState =  {
     messageisArticle: ''
 }
 
-export const getArticles = createAsyncThunk('articles/getAll', async (params, thunkAPI) => {
+export const getArticles = createAsyncThunk('articles/getArticles', async (params, thunkAPI) => {
     try {
         return await articleService.get(params);
     } catch (error) {
@@ -37,12 +37,12 @@ export const articleSlice = createSlice({
         }).addCase(getArticles.fulfilled, (state, action) => {
             state.isLoadingArticle = false
             state.isSuccessArticle = true
-            state.article = action.payload
+            state.articles = action.payload
         }).addCase(getArticles.rejected, (state, action) => {
             state.isLoadingArticle = false
             state.isErrorArticle = true
             state.message = action.payload
-            state.article = {}
+            state.articles = {}
         })
     }
 });

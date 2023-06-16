@@ -14,14 +14,14 @@ function FeedPreferences() {
 
     const dispatch = useDispatch();
 
-    const {isLoading, isSuccess, isLoadingFilter, message, isError, filters } = useSelector(
+    const {isLoading, isSuccess, message, filters } = useSelector(
 		(state) => state.filter
 	);
 
     const [categories, setCategories] = useState([]);
     const [sources, setSources] = useState([]);
     const [authors, setAuthors] = useState([]);
-        console.log(filters);
+        
     useEffect(() => {
         return () => {
             if(isSuccess) {
