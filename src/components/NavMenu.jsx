@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -5,15 +7,26 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { useEffect, useState } from 'react'
+import { useState } from 'react';
+import { logout, reset } from '../resources/login/login.slice';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuthStatus } from '../hooks/useAuthStatus'
+
 
 function NavMenu() {
+  const dispatch = useDispatch();
+
+  const { loggedIn } = useAuthStatus()
 
   const [desktop, setDesktop] = useState(window.innerWidth <= 768 ? false : true);
 
-  useEffect(() => {
-      console.log(desktop);
-}, [])
+  const logoutClick = async (e) => {
+    e.preventDefault();
+    localStorage.removeItem('user');
+    dispatch(logout());
+    dispatch(reset());
+  }
 
   return (
     <>
@@ -34,20 +47,45 @@ function NavMenu() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Feed</Nav.Link>
-                  <Nav.Link href="#action2">Search</Nav.Link>
-                  <NavDropdown
-                    title="Preferences"
-                    id={`offcanvasNavbarDropdown-expand-${expand}`}
-                  >
-                    <NavDropdown.Item href="#action4">
-                      Feed Preferences
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>
+                  {
+                    loggedIn ? (
+                      <>
+                        <Link className='nav-link' to='/'>
+                          Feed
+                        </Link>
+
+                        <Link className='nav-link' to='/'>
+                          Search
+                        </Link>
+                        <NavDropdown
+                          title="Preferences"
+                          id={`offcanvasNavbarDropdown-expand-${expand}`}
+                        >
+                          <NavDropdown.Item href="#action4">
+                            Feed Preferences
+                          </NavDropdown.Item>
+                          <NavDropdown.Divider />
+                          <NavDropdown.Item onClick={logoutClick}>
+                            Logout
+                          </NavDropdown.Item>
+                        </NavDropdown>
+                      </>
+                    ) : (
+                      <>
+
+                        <Link className='nav-link' to='/'>
+                          Sign Up
+                        </Link>
+
+                        <Link className='nav-link' to='/sign-in'>
+                          Sign In
+                        </Link>
+
+                      </>
+                    )
+                  }
+
+
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
