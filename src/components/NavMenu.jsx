@@ -50,7 +50,7 @@ function NavMenu() {
                   {
                     loggedIn ? (
                       <>
-                        <Link className='nav-link' to='/'>
+                        <Link className='nav-link' to='/feed'>
                           Feed
                         </Link>
 

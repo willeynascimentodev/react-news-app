@@ -59,6 +59,7 @@ function NewFilter() {
             toast.warning('Choose a type of filter');
         } else {
             dispatch(store(data));
+            setFormData({})
         }
     }
 

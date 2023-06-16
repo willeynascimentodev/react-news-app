@@ -2,10 +2,10 @@ import NavMenu from "../components/NavMenu";
 import FilterPreferences from '../components/FilterPreferences';
 import Loading from '../components/Loading';
 import {  useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getAll, reset} from '../resources/filter/filter.slice';
-import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { getAll, reset} from '../resources/filter/filter.slice';
 
 function FeedPreferences() {
     const { user } = useSelector((state) => state.login);
@@ -18,23 +18,27 @@ function FeedPreferences() {
 		(state) => state.filter
 	);
 
+    const [categories, setCategories] = useState([]);
+    const [sources, setSources] = useState([]);
+    const [authors, setAuthors] = useState([]);
+        console.log(filters);
     useEffect(() => {
         return () => {
             if(isSuccess) {
                 dispatch(reset())
+                setCategories(filters.data.categories);
+                setSources(filters.data.sources);
+                setAuthors(filters.data.authors);
             }
         }
-    }, [dispatch, isSuccess, isLoading])
+    }, [dispatch, isSuccess, isLoading, filters])
+    
 
     useEffect(() => {
         dispatch(getAll(user.data.token))
     }, [dispatch])
     
     if(isLoading) {
-        return <Loading/>
-    } 
-
-    if(isLoadingFilter) {
         return <Loading/>
     } 
 
@@ -49,17 +53,21 @@ function FeedPreferences() {
             <div className="container">
                 <h2 className="text-center">Feed Preferences</h2>
                 <h3>Personalize your feed choosing default filters</h3>
-                <div className='row mt-3'>
+                <div className='row mt-3 mb-3'>
                     {
-                        isSuccess  ? (
+                        !isLoading  ? (
                             <>
-                                <FilterPreferences type="Categories" items={filters.data.categories}/>
-                                <FilterPreferences type="Sources" items={filters.data.sources}/>
-                                <FilterPreferences type="Authors" items={filters.data.authors}/>
+                                <FilterPreferences type="Categories" items={categories || []}/>
+                                <FilterPreferences type="Sources" items={sources || []}/>
+                                <FilterPreferences type="Authors" items={authors || []}/>
                             </>
                         ) : ([])
                     }
                 </div>
+                <Link className='btn btn-secondary form-control' to='/new-filter'>
+                    Create New Filters
+                </Link>
+                
             </div>
         </>
     )
