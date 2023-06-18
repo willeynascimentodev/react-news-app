@@ -74,13 +74,15 @@ function NewFilter() {
             <NavMenu />
             <h2 className="text-center">Save Filter</h2>
             <h3 className="text-center mb-3">Enter some predefined filters here</h3>
-            <IncludeFilter 
-                className='col-sm-8 mx-auto'
-                onChange={onChange}
-                filter={filter}
-                type={type}
-                addFilter={addFilter}
-            />
+            <div className='container'>
+                <IncludeFilter 
+                    className='col-sm-8 mx-auto'
+                    onChange={onChange}
+                    filter={filter}
+                    type={type}
+                    addFilter={addFilter}
+                />
+            </div>
         </>
     )
 }
