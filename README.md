@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 2 - Run the setup.sh file in the root directory of the project.
 
-3 - If you haven't installed the backend yet, follow the tutorial at this link: [Backend](https://reactjs.org/]](https://github.com/willeynascimentodev/news-backend-laravel-api).
+3 - If you haven't installed the backend yet, follow the tutorial at this link: [Backend](https://github.com/willeynascimentodev/news-backend-laravel-api).
 
 
 ## Other Available Scripts
