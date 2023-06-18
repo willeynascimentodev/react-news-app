@@ -38,10 +38,6 @@ function FeedPreferences() {
         dispatch(getAll(user.data.token))
     }, [dispatch])
     
-    if(isLoading) {
-        return <Loading/>
-    } 
-
     if(message == 'Your session is over') {
         toast.error('Your session is over sign in again');
         navigate('/sign-in');

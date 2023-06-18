@@ -61,11 +61,9 @@ function NavMenu() {
                           title="Preferences"
                           id={`offcanvasNavbarDropdown-expand-${expand}`}
                         >
-                          <NavDropdown.Item href="#action4">
-                            <Link className='nav-link' to='/feed-preferences'>
-                              Feed Preferences
-                            </Link>
-                          </NavDropdown.Item>
+                          <Link className='nav-link' to='/feed-preferences'>
+                            Feed Preferences
+                          </Link>
                           <NavDropdown.Divider />
                           <NavDropdown.Item onClick={logoutClick}>
                             Logout

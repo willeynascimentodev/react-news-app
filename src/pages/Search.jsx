@@ -121,10 +121,10 @@ function Search () {
     
     
     return <>
+        <NavMenu/>
         <div className="container">
             {
             }
-            <NavMenu/>
             <h2 className="text-center">Search</h2>
             <h3 className="mb-2text-center">Here you can create a more customized filter.</h3>
             <SearchBar
