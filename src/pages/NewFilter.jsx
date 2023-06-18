@@ -61,12 +61,7 @@ function NewFilter() {
             }
             
             dispatch(store(data));
-            setFormData({})
         }
-    }
-
-    if(isLoading) {
-        return <Loading />
     }
     
     return (
@@ -82,6 +77,7 @@ function NewFilter() {
                     type={type}
                     addFilter={addFilter}
                 />
+                <Loading loading={isLoading} />
             </div>
         </>
     )
